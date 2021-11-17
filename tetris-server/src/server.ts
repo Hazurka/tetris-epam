@@ -1,17 +1,19 @@
 import * as express from "express";
 import * as mongoose from "mongoose";
 import * as cors from "cors";
+import 'dotenv-safe/config';
 
 import { UsersRouter } from "./API/users";
 
-mongoose.connect(
-  process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
-).then(() => {
-  console.log('Successfully connect to MongoDB');
-}).catch((err) => {
-  console.error(JSON.stringify(err, null, 2));
-});
+console.log(process.env.MONGO_URL);
+try {
+  mongoose.connect(
+    process.env.MONGO_URL,
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+  ).then(() => console.log("Connected to MongoDB"))
+} catch (err) {
+  console.log(err);
+}
 
 // Create a new express app instance
 const app: express.Application = express();
