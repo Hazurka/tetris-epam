@@ -10,16 +10,16 @@ import {
   StyledLoginWrapper,
   StyledLoginContainer,
   StyledFormControl,
-  centeredComponent,
   FormInput,
   FormButton,
   FormText,
 } from "./styles/StyledForm";
 import { StyledErrors } from "./styles/StyledErrors";
+import { API_URL } from '../constants/index';
 
 const EMAIL_FIELD = "emailField";
 const PASSWORD_FIELD = "passwordField";
-const loginUserEndpoint = "http://localhost:5000/users/login";
+const loginUserEndpoint = `${API_URL}/users/login`;
 
 const Login = observer((props) => {
   const [emailInput, setEmailInput] = useState("");

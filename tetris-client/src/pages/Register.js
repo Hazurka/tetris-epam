@@ -11,12 +11,14 @@ import {
 } from "./styles/StyledForm";
 import { setLocalStorageUser } from "../context/auth-2";
 import { StyledErrors } from "./styles/StyledErrors";
+import { API_URL } from '../constants/index';
 
 const EMAIL_INPUT = "emailInput";
 const PASSWORD_INPUT = "passwordInput";
 const CONFIRM_PASSWORD_INPUT = "confirmPasswordInput";
 
-const registerUserEndpoint = "http://localhost:5000/users/create";
+const registerUserEndpoint = `${API_URL}/users/create`;
+const EMAIL_REGEX = /^[^\s@.]+(\.[^\s@.]+)*@[A-Za-z\d]([\w-]*([A-Za-z0-9]\.[A-Za-z0-9])*)*([A-Za-z0-9]\.[A-Za-z]{2,})$/;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -29,16 +31,26 @@ const Register = () => {
   const onChange = (e, field) => {
     e.stopPropagation();
     const { value } = e.target;
-    if (field == EMAIL_INPUT) setEmailInput(value);
-    else if (field == PASSWORD_INPUT) setPasswordInput(value);
-    else if (field == CONFIRM_PASSWORD_INPUT) setConfirmPasswordInput(value);
+    if (field == EMAIL_INPUT) {
+      setEmailInput(value)
+    } else if (field == PASSWORD_INPUT) {
+      setPasswordInput(value);
+    } else if (field == CONFIRM_PASSWORD_INPUT) {
+      setConfirmPasswordInput(value);
+    }
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     if (passwordInput != confirmPasswordInput) {
       return setErrors({
         error: "Passwords don't match!",
+      });
+    }
+    if (!EMAIL_REGEX.test(emailInput)) {
+      return setErrors({
+        error: "Please provide a valid email!",
       });
     }
     const payload = {

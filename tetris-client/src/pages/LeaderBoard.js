@@ -16,8 +16,9 @@ import {
   StyledTableElement,
   StyledTableRank,
 } from "./styles/StyledLeaderBoard";
+import { API_URL } from '../constants/index';
 
-const allUsersEndpoint = "http://localhost:5000/users/all";
+const allUsersEndpoint = `${API_URL}/users/all`;
 
 const LeaderBoard = () => {
   // const { loading, data } = useQuery(FETCH_RECORDS_QUERY);

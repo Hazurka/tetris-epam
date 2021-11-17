@@ -7,16 +7,23 @@ import { IUser, User } from "../schema/users";
 
 export const UsersRouter = express.Router();
 
+const EMAIL_REGEX = /^[^\s@.]+(\.[^\s@.]+)*@[A-Za-z\d]([\w-]*([A-Za-z0-9]\.[A-Za-z0-9])*)*([A-Za-z0-9]\.[A-Za-z]{2,})$/;
+
 UsersRouter.post("/create", async (req, res) => {
   const { email } = req.body;
+  if (!EMAIL_REGEX.test(email)) {
+    return res.status(409).send({ message: "user already exists" });
+  }
+
   const existingUser: IUser = await User.findOne({ email });
+
   if (existingUser) {
     console.log("user already exists");
     return res.status(401).send({ message: "user already exists" });
   } else {
     const user: IUser = {
       _id: mongoose.Types.ObjectId(),
-      ...req.body,
+      email,
       password: passwordHash(req.body.password),
     };
     try {
@@ -68,10 +75,12 @@ UsersRouter.get("/all", async (req, res) => {
 UsersRouter.post("/updateScore", async (req, res) => {
   const { email, points, createdAt } = req.body;
   const user: IUser = await User.findOne({ email });
-  const query = { _id: user._id };
+
   if (user.points > points) {
-    res.status(200).send({ message: "lower score! " });
+    return res.status(200).send({ message: "lower score! " });
   }
+
+  const query = { _id: user._id };
   try {
     await User.findOneAndUpdate(query, { points, createdAt });
     res.status(200).send({ message: "succesfully updated record" });
