@@ -5,7 +5,6 @@ import 'dotenv-safe/config';
 
 import { UsersRouter } from "./API/users";
 
-console.log(process.env.MONGO_URL);
 try {
   mongoose.connect(
     process.env.MONGO_URL,
