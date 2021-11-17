@@ -21,8 +21,8 @@ UsersRouter.post("/create", async (req, res) => {
     console.log("user already exists");
     return res.status(401).send({ message: "user already exists" });
   } else {
-    const user: IUser = {
-      _id: mongoose.Types.ObjectId(),
+    const user: Partial<IUser> = {
+      _id: mongoose.Types.ObjectId().toString(),
       email,
       password: passwordHash(req.body.password),
     };
