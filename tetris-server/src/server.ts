@@ -5,9 +5,13 @@ import * as cors from "cors";
 import { UsersRouter } from "./API/users";
 
 mongoose.connect(
-  "mongodb+srv://admin:admin123@cluster0.68znp.mongodb.net/tetris-game?retryWrites=true&w=majority",
+  process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
-);
+).then(() => {
+  console.log('Successfully connect to MongoDB');
+}).catch((err) => {
+  console.error(JSON.stringify(err, null, 2));
+});
 
 // Create a new express app instance
 const app: express.Application = express();

@@ -21,8 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/tetris-server/yarn.lock
+/tetris-client/yarn.lock
+/tetris-server/.env
 
 node_modules
 
 .node_modules
-
