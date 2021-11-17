@@ -12,7 +12,7 @@ const UserSchema: mongoose.Schema = new mongoose.Schema({
   _id: mongoose.Types.ObjectId,
   email: { type: String, required: true },
   password: { type: String, required: true },
-  points: { type: Number, required: true },
+  points: { type: Number },
   createdAt: { type: Date, required: false },
 });
 

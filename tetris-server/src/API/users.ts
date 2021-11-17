@@ -12,7 +12,7 @@ const EMAIL_REGEX = /^[^\s@.]+(\.[^\s@.]+)*@[A-Za-z\d]([\w-]*([A-Za-z0-9]\.[A-Za
 UsersRouter.post("/create", async (req, res) => {
   const { email } = req.body;
   if (!EMAIL_REGEX.test(email)) {
-    return res.status(409).send({ message: "user already exists" });
+    return res.status(409).send({ message: "Please provide a valid email." });
   }
 
   const existingUser: IUser = await User.findOne({ email });
