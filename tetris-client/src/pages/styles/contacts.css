@@ -3,7 +3,7 @@ body{
 }
 .top-people-ctr,.bottom-people-ctr,.mid-people-ctr{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin:50px 5px;
 }
 .single-person-section{
@@ -22,7 +22,6 @@ body{
 .person-img{
   width: 75%;
 }
-.info-ctr{
-  background: #8FD6ED;
+/* .info-ctr{
   height: 60%;
-}
+} */

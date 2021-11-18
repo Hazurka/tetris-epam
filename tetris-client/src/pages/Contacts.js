@@ -21,18 +21,20 @@ const Contacts = () => {
                 </div>
                 
                <div className="info-ctr">
-                <p>Vladimir Natchev / Country Head</p>
-                <a href="">schedule a meeting </a>
+                <p>Vladimir Natchev</p>
+                <p>Country Head</p>
+                <a href="https://calendly.com/vladimir_natchev/30min">schedule a meeting </a>
                </div>
             </article>
             <article className="single-person-section">       
                 <div className="img-ctr">
-                    <img className="person-img" src="./photo (1).png" alt="" />
+                    <img className="person-img" src={IvayloImg} alt="" />
                 </div>
                 
                <div className="info-ctr">
-                <p>Vladimir Natchev / Country Head</p>
-                <a href="">schedule a meeting </a>
+                <p>Ivaylo Nikolov</p>
+                <p>Delivery Manager</p>
+                <a href="https://calendly.com/jstalks-ivaylo_nikolov/30min?month=2021-11 ">schedule a meeting </a>
                </div>
             </article>
            
@@ -40,22 +42,24 @@ const Contacts = () => {
         <section className="mid-people-ctr">
             <article className="single-person-section">       
                 <div className="img-ctr">
-                    <img className="person-img" src="./photo (2).png" alt="" />
+                    <img className="person-img" src={ZdravkoImg} alt="" />
                 </div>
                 
                <div className="info-ctr">
-                <p>Vladimir Natchev / Country Head</p>
-                <a href="">schedule a meeting </a>
+                <p>Zdravko Duchev</p>
+                <p>Software Engineer Manager</p>
+                <a href="https://calendly.com/jstalks-zdravko_duchev/meet">schedule a meeting </a>
                </div>
             </article>
             <article className="single-person-section">       
                 <div className="img-ctr">
-                    <img className="person-img" src="./photo (3).png" alt="" />
+                    <img className="person-img" src={HristinaImg} alt="" />
                 </div>
                 
                <div className="info-ctr">
-                <p>Vladimir Natchev / Country Head</p>
-                <a href="">schedule a meeting </a>
+                <p>Hristina Nenova</p>
+                <p>Talent Acquisition Lead </p>
+                <a href="https://calendly.com/d/cf3-nsc-6pb/15-minute-meeting ">schedule a meeting </a>
                </div>
             </article>
         </section>
@@ -63,22 +67,24 @@ const Contacts = () => {
             
             <article className="single-person-section">       
                 <div className="img-ctr">
-                    <img className="person-img" src="./photo (4).png" alt="" />
+                    <img className="person-img" src={LuboImg} alt="" />
                 </div>
                 
                <div className="info-ctr">
-                <p>Vladimir Natchev / Country Head</p>
-                <a href="">schedule a meeting </a>
+                <p>Lyubomir Bozhinov</p>
+                <p>Lead Software Engineer</p>
+                <a href="https://calendly.com/l-s-bozhinov/15min ">schedule a meeting </a>
                </div>
             </article>
             <article className="single-person-section">       
                 <div className="img-ctr">
-                    <img className="person-img" src="./photo (5).png" alt="" />
+                    <img className="person-img" src={SamiImg} alt="" />
                 </div>
                 
                <div className="info-ctr">
-                <p>Vladimir Natchev / Country Head</p>
-                <a href="">schedule a meeting </a>
+                <p>Samuil Aleksov</p>
+                <p>Chief Software Engineer</p>
+                <a href="https://calendly.com/samaleksov/15min ">schedule a meeting </a>
                </div>
             </article>
         </section>
