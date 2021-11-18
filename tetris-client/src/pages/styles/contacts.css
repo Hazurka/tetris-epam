@@ -1,0 +1,28 @@
+body{
+  text-align: center;
+}
+.top-people-ctr,.bottom-people-ctr,.mid-people-ctr{
+  display: flex;
+  justify-content: center;
+  margin:50px 5px;
+}
+.single-person-section{
+  margin: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+.img-ctr{
+  position: relative;
+}
+.decor-img{
+  position: absolute;
+  left: -15px;
+  bottom: -31px;
+}
+.person-img{
+  width: 75%;
+}
+.info-ctr{
+  background: #8FD6ED;
+  height: 60%;
+}

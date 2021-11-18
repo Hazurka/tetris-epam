@@ -12,6 +12,22 @@ import {
   StyledLink,
 } from "./styles/StyledMenuBar";
 
+const ContactsUl = ({ activeItem, handleItemClick }) => {
+  return (
+    <li>
+      <StyledLink
+        name="Contacts"
+        className={activeItem === "contacts" ? "active" : ""}
+        onClick={handleItemClick}
+        as={Link}
+        to="/contacts"
+      >
+        Contacts
+      </StyledLink>
+    </li>
+  )
+}
+
 const MenuBar = observer(() => {
   const tetrisStore = useContext(tetrisContext);
   const user = tetrisStore.getUser();
@@ -58,6 +74,7 @@ const MenuBar = observer(() => {
               Leaderboard
             </StyledLink>
           </li>
+          <ContactsUl activeItem={activeItem} handleItemClick={handleItemClick} />
           {/* <li>
             <StyledLink
               name="myscores"
@@ -104,6 +121,7 @@ const MenuBar = observer(() => {
               Leaderboard
             </StyledLink>
           </li>
+          <ContactsUl activeItem={activeItem} handleItemClick={handleItemClick} />
           <li>
             <StyledLink
               name="login"
