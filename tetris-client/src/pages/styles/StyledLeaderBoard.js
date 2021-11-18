@@ -51,6 +51,7 @@ export const StyledTableElement = styled.p`
   &:last-of-type {
     border-right: none;
   }
+  
 `;
 
 export const StyledTableRank = styled.p`

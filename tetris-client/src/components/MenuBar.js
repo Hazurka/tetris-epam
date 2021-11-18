@@ -22,7 +22,7 @@ const ContactsUl = ({ activeItem, handleItemClick }) => {
         as={Link}
         to="/contacts"
       >
-        Contacts
+        Meet Us
       </StyledLink>
     </li>
   )
