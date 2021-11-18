@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LeaderBoard from "./pages/LeaderBoard";
 import MyScores from "./pages/MyScores";
+import Contacts from "./pages/Contacts";
 
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./util/AuthRoute";
@@ -21,6 +22,7 @@ const App = observer(() => (
       <MenuBar />
       <Route exact path="/" component={Tetris} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
+      <Route exact path="/contacts" component={Contacts} />
       <MyScoresRoute exact path="/myscores" component={MyScores} />
       <AuthRoute exact path="/login" component={Login} />
       <AuthRoute exact path="/register" component={Register} />
