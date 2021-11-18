@@ -51,7 +51,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Vladimir Natchev</p>
                 <p>Country Head</p>
-                <a href="https://calendly.com/vladimir_natchev/30min">join </a>
+                <a href="https://calendly.com/vladimir_natchev/30min">Lets talk </a>
                </div>
             </article>
             <article className="single-person-section">       
@@ -62,7 +62,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Ivaylo Nikolov</p>
                 <p>Delivery Manager</p>
-                <a href="https://calendly.com/jstalks-ivaylo_nikolov/30min?month=2021-11 ">join </a>
+                <a href="https://calendly.com/jstalks-ivaylo_nikolov/30min?month=2021-11 ">Lets talk </a>
                </div>
             </article>
            
@@ -76,7 +76,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Zdravko Duchev</p>
                 <p>Software Engineer Manager</p>
-                <a href="https://calendly.com/jstalks-zdravko_duchev/meet">join </a>
+                <a href="https://calendly.com/jstalks-zdravko_duchev/meet">Lets talk </a>
                </div>
             </article>
             <article className="single-person-section">       
@@ -87,7 +87,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Hristina Nenova</p>
                 <p>Talent Acquisition Lead </p>
-                <a href="https://calendly.com/hristina_nenova/15min">join </a>
+                <a href="https://calendly.com/hristina_nenova/15min">Lets talk </a>
                </div>
             </article>
         </section>
@@ -101,7 +101,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Lyubomir Bozhinov</p>
                 <p>Lead Software Engineer</p>
-                <a href="https://calendly.com/l-s-bozhinov/15min ">join </a>
+                <a href="https://calendly.com/l-s-bozhinov/15min ">Lets talk </a>
                </div>
             </article>
             <article className="single-person-section">       
@@ -112,7 +112,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Samuil Aleksov</p>
                 <p>Chief Software Engineer</p>
-                <a href="https://calendly.com/samaleksov/15min ">join </a>
+                <a href="https://calendly.com/samaleksov/15min ">Lets talk </a>
                </div>
             </article>
         </section>
@@ -126,7 +126,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Svilen Hristov</p>
                 <p>Recruiter</p>
-                <a href="https://calendly.com/svilen_hristov/30min">join </a>
+                <a href="https://calendly.com/svilen_hristov/30min">Lets talk </a>
                </div>
             </article>
             <article className="single-person-section">       
@@ -137,7 +137,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Stefani Germanova</p>
                 <p>Recruiter</p>
-                <a href=" https://calendly.com/jstalks-stefani_germanova/30min">join </a>
+                <a href=" https://calendly.com/jstalks-stefani_germanova/30min">Lets talk </a>
                </div>
             </article>
         </section>
@@ -151,7 +151,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Desislava Grigorova</p>
                 <p>Recruiter</p>
-                <a href="https://calendly.com/jstalks-desislava_grigorova/30min">join </a>
+                <a href="https://calendly.com/jstalks-desislava_grigorova/30min">Lets talk </a>
                </div>
             </article>
             <article className="single-person-section">       
@@ -162,7 +162,7 @@ const Contacts = () => {
                <div className="info-ctr">
                 <p>Yana Ivanova</p>
                 <p>Senior Software Engineer</p>
-                <a href="https://calendly.com/yana_ivanova">join </a>
+                <a href="https://calendly.com/yana_ivanova">Lets talk </a>
                </div>
             </article>
             
