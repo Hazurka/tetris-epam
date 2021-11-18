@@ -32,22 +32,17 @@ const MenuBar = observer(() => {
   const tetrisStore = useContext(tetrisContext);
   const user = tetrisStore.getUser();
   const [activeItem, setActiveItem] = useState("home");
-  const [stateUser, setStateUser] = useState(user);
   const history = useHistory();
-
-  useEffect(() => {
-    // location.reload();
-    setStateUser(user);
-  }, [user]);
 
   const logout = () => {
     tetrisStore.logoutUser();
-    setStateUser(null);
     history.push("/login");
   };
 
+  
+
   const handleItemClick = (e) => setActiveItem(e.target.name);
-  const menuBar = stateUser ? (
+  const menuBar = user ? (
     <StyledNav>
       <StyledMenuBarContainer>
         <h1>
@@ -58,7 +53,7 @@ const MenuBar = observer(() => {
             as={Link}
             to="/"
           >
-            {stateUser.email}
+            {user.email}
           </StyledLink>
         </h1>
         <StyledMenuBarUl>
@@ -150,6 +145,6 @@ const MenuBar = observer(() => {
   );
 
   return menuBar;
-});
+}, );
 
 export default MenuBar;

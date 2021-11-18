@@ -1,5 +1,5 @@
 export const setLocalStorageUser = (user) => {
-  localStorage.setItem("user", user?.email);
+  localStorage.setItem("user", JSON.stringify(user));
 };
 
 export const logoutUser = () => {
@@ -7,5 +7,6 @@ export const logoutUser = () => {
 };
 
 export const getLocalStorageUser = () => {
-  return localStorage.getItem("user");
+  const user = localStorage.getItem("user");
+  return JSON.parse(user);
 };

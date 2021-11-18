@@ -45,6 +45,7 @@ const Login = observer((props) => {
     try {
       const { data } = await axios.post(loginUserEndpoint, payload);
       context.loginUser(data.user);
+      setLocalStorageUser(data.user);
       const homeButton = document.querySelector('a[name="home"]');
       const leaderboardButton = document.querySelector('a[name="leaderboard"]');
       leaderboardButton.click();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
 import { setLocalStorageUser } from "../context/auth-2";
 import { StyledErrors } from "./styles/StyledErrors";
 import { API_URL } from '../constants/index';
+import { tetrisContext } from "../store/tetris-store";
 
 const EMAIL_INPUT = "emailInput";
 const PASSWORD_INPUT = "passwordInput";
@@ -27,6 +28,7 @@ const Register = () => {
   const [confirmPasswordInput, setConfirmPasswordInput] = useState("");
   const [errors, setErrors] = useState({});
   const history = useHistory();
+  const context = useContext(tetrisContext);
 
   const onChange = (e, field) => {
     e.stopPropagation();
@@ -60,10 +62,11 @@ const Register = () => {
     };
     try {
       const result = await axios.post(registerUserEndpoint, payload);
+      context.loginUser(result.user);
       setLocalStorageUser(result.data);
       history.push("/");
     } catch (e) {
-      setLocalStorageUser(null)
+      setLocalStorageUser(null);
       setErrors({
         error: "User with such email already exists !",
       });

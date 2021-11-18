@@ -21,7 +21,6 @@ import { API_URL } from '../constants/index';
 const allUsersEndpoint = `${API_URL}/users/all`;
 
 const LeaderBoard = () => {
-  // const { loading, data } = useQuery(FETCH_RECORDS_QUERY);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 

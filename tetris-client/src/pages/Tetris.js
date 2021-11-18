@@ -125,15 +125,17 @@ const Tetris = () => {
         console.log("GAME OVER!!!");
         setGameOver(true);
         setDropTime(null);
-        const email = getLocalStorageUser();
-        if (email) {
+        const user = getLocalStorageUser();
+        
+        if (user.email && user._id) {
           // here!!!
           const payload = {
             points: score,
-            email: email,
-            createdAt: Date.now(),
+            email: user.email,
+            _id: user._id
           };
-          const res = await axios.post(postGameOverResult, payload);
+
+          await axios.post(postGameOverResult, payload);
         }
       }
       updatePlayerPos({ x: 0, y: 0, collided: true });
