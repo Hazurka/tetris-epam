@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "test": "ts-node-dev --ignore-watch node_modules src/cli/test.ts",
-    "startServer": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "startDevDebug": "ts-node-dev -r dotenv/config --nolazy --inspect --ignore-watch node_modules src/index.ts",
+    "start": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "debug": "ts-node-dev -r dotenv/config --nolazy --inspect --ignore-watch node_modules src/index.ts",
     "startServer:watch": "nodemon"
   },
   "dependencies": {
