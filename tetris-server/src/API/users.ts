@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as mongoose from "mongoose";
 import JWTLogin from "../helpers/jwt-login";
+import { getUser, ValidationError } from "../helpers/validations";
 const jwt = require("jsonwebtoken");
 
 import { passwordHash, passwordCompare } from "../lib/auth";
@@ -87,11 +88,52 @@ UsersRouter.post("/updateScore", async (req, res) => {
     return res.status(200).send({ message: "lower score! " });
   }
 
-  const query = { _id: user._id };
+  const query = { _id: (user as IUser)._id  };
   try {
     await User.findOneAndUpdate(query, { points });
     res.status(200).send({ message: "succesfully updated record" });
   } catch (e) {
     res.status(400).send({ message: e.message });
   }
+});
+
+UsersRouter.post("/updatePartialScore", async (req, res) => {
+  const { email, points, _id } = req.body;
+
+  let user: IUser;
+  try {
+    user = await getUser(email, _id);
+  } catch (err) {
+    const { statusCode, statusMessage } = JSON.parse(err) as ValidationError;
+    return res.status(statusCode).send({ message: statusMessage });
+  }
+});
+
+UsersRouter.post("/startGame", async (req, res) => {
+  const { email, _id } = req.body;
+
+  let user: IUser;
+  try {
+    user = await getUser(email, _id);
+  } catch (err) {
+    const { statusCode, statusMessage } = JSON.parse(err) as ValidationError;
+    return res.status(statusCode).send({ message: statusMessage });
+  }
+
+  const multiple = Math.random()
+});
+
+
+UsersRouter.post("/updatePartialScore", async (req, res) => {
+  const { email, lines, _id } = req.body;
+
+  let user: IUser;
+  try {
+    user = getUser(email, _id);
+  } catch (err) {
+    const { statusCode, statusMessage } = JSON.parse(err) as ValidationError;
+    return res.status(statusCode).send({ message: statusMessage });
+  }
+
+  
 });

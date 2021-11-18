@@ -5,6 +5,9 @@ export interface IUser extends Document {
   email: string;
   password: string;
   points?: number;
+  lastGameMultiple: number;
+  bestGameMultiple: number;
+  gamePoints: number[];
   createdAt: Date;
 }
 

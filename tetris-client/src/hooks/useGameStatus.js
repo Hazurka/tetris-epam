@@ -6,7 +6,7 @@ export const useGameStatus = rowsCleared => {
   const [level, setLevel] = useState(0);
 
   let linePoints = useMemo(() => { }, []);
-  linePoints = [40, 100, 300, 1200];
+  linePoints = [37, 111, 312, 1170];
 
   const calcScore = useCallback(() => {
     // We have score

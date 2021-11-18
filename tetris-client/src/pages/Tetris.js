@@ -29,9 +29,9 @@ import {
   StyledAlert,
 } from "./styles/StyledTetris";
 import { getLocalStorageUser } from "../context/auth-2";
-import { API_URL } from '../constants/index';
+import { API_URL, LOCAL_API_URL } from '../constants/index';
 
-const postGameOverResult = `${API_URL}/users/updateScore`;
+const postGameOverResult = `${LOCAL_API_URL}/users/updateScore`;
 
 const Tetris = () => {
   const { user } = useContext(AuthContext);
