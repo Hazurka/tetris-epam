@@ -9,6 +9,7 @@ import StefiImg from '../img/stefi.png';
 import DesiImg from '../img/desi.png';
 import EpamImg from '../img/epam.png'
 import YanaImg from '../img/yana.png'
+import EpamRev from '../img/epam-rev.png'
 import "../pages/styles/contacts.css";
 
 const Contacts = () => {
@@ -22,16 +23,20 @@ const Contacts = () => {
       
             <section className="top-people-ctr">
            
-            <article className="single-person-section">       
+            <article className="single-person-section first">       
                 <div className="img-ctr">
                     <img className="person-img" src={EpamImg} alt="" />
                 </div>
                 
                <div className="info-ctr">
-                <p>Meet our TA team</p>
+                <p>Meet our</p>
+                <div>TA team</div>
                 {/* <p>Chief Software Engineer</p> */}
-                <a href="https://us02web.zoom.us/j/8746846281?pwd=OHM0dEwrZjk4YXQ0aGVMaFNFTElOdz09">join </a>
+                <div className="team"><a href="https://us02web.zoom.us/j/8746846281?pwd=OHM0dEwrZjk4YXQ0aGVMaFNFTElOdz09">join </a></div>
                </div>
+               <div className="img-ctr">
+                    <img className="person-img" src={EpamRev} alt="" />
+                </div>
             </article>
            
           

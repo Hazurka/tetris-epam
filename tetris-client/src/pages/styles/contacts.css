@@ -2,6 +2,9 @@ body{
   text-align: center;
   overflow-x: hidden;
 }
+h1{
+  margin: 28px 0;
+}
 .top-people-ctr,.bottom-people-ctr,.mid-people-ctr{
   display: flex;
   justify-content: center;
@@ -11,23 +14,56 @@ body{
 .single-person-section{
   /* margin: 10px 20px; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   width: 40%
 }
 .img-ctr{
   position: relative;
+}
+.info-ctr{
+  text-align: left;
+}
+.info-ctr a{
+  text-decoration: none;
+  color:teal;
+}
+.info-ctr *{
+  margin: 20px 0;
+}
+.info-ctr > p:nth-child(2){
+  font-size: 12px;
+}
+.info-ctr p,.info-ctr div{
+  text-align: center;
 }
 .decor-img{
   position: absolute;
   left: -15px;
   bottom: -31px;
 }
+
 .person-img{
   width: 75%;
 }
-/* .info-ctr{
-  height: 60%;
-} */
+.team{
+  display: flex;
+  justify-content: center;
+}
+.team a{
+  font-size: 26px;
+}
+.single-person-section.first{
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+.single-person-section.first .info-ctr p{
+  text-align: center;
+}
+.info-ctr p{
+  text-align: left;
+}
+
 @media only screen and (max-width: 800px) {
   .single-person-section {
     flex-direction: column;
