@@ -105,7 +105,7 @@ const MenuBar = observer(() => {
             as={Link}
             to="/"
           >
-            Home
+            Play Game
           </StyledLink>
         </h1>
         <StyledMenuBarUl>

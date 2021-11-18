@@ -10,8 +10,9 @@ const Contacts = () => {
   return (
     <>
       <h1>MEET EPAM BULGARIA’S TEAM AT JSTALKS 2021</h1>
-      <p>You want to learn more about EPAM’s company culture, work processes, projects &amp; technologies, open positions, career development opportunities… and many more? </p>
-      <p>Book a 15-minute slot for an online meeting and discuss everything you are interested in with our team.</p>
+      <p>You want to learn more about EPAM’s company culture, work processes, projects &amp; technologies, open positions, </p>
+      <p>career development opportunities… and many more? </p>
+      <p>Schedule a meeting and discuss everything you are interested in with our team. </p>
       <section className="people-ctr">
         <section className="top-people-ctr">
            
