@@ -30,6 +30,7 @@ import {
 } from "./styles/StyledTetris";
 import { getLocalStorageUser } from "../context/auth-2";
 import { API_URL } from '../constants/index';
+import  Information from './Information';
 
 const postGameOverResult = `${API_URL}/users/updateScore`;
 
@@ -187,7 +188,7 @@ const Tetris = () => {
           </StyledAlert>
         </Fade>
       ) : null}
-      <StyledTetris>
+      <StyledTetris className="tetris-container">
         <Stage stage={stage} />
         <aside>
           {gameOver ? (
@@ -205,7 +206,10 @@ const Tetris = () => {
           )}
           <StartButton callback={startGame} />
         </aside>
+        <Information />
+        
       </StyledTetris>
+      
     </StyledTetrisWrapper>
   );
 };

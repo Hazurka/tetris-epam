@@ -63,6 +63,22 @@ h1{
 .info-ctr p{
   text-align: left;
 }
+.tetris-container aside.game-info-first{
+  text-align: center;
+  width: 50%;
+  max-width: 400px;
+  /* margin-left: 50px; */
+
+}
+.game-info-first p{
+  line-height: 20px;
+}
+.game-info-first *{
+  color:#a0a09b;
+}
+.styled-word{
+  color:white;
+}
 
 @media only screen and (max-width: 800px) {
   .single-person-section {
