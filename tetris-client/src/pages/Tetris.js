@@ -40,7 +40,10 @@ const Tetris = () => {
   const [flash, setFlash] = useState(null);
   const history = useHistory();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8e4738cfca9d3f733f9cc7ac84fd22471c9c2d38
   // const [createRecord] = useMutation(CREATE_RECORD, {
   //   update(proxy, result) {
   //     const data = proxy.readQuery({
