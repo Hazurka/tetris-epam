@@ -40,13 +40,6 @@ const Tetris = () => {
   const [flash, setFlash] = useState(null);
   const history = useHistory();
 
-  let username;
-  if (!authState?.userData) {
-    username = null;
-  } else {
-    username = authState.userData?.user?.email;
-  }
-
   // const [createRecord] = useMutation(CREATE_RECORD, {
   //   update(proxy, result) {
   //     const data = proxy.readQuery({
@@ -212,7 +205,7 @@ const Tetris = () => {
               <Display text={`Level: ${level}`} />
             </div>
           )}
-          <StartButton callback={username ? startGame : gotoRegister} />
+          <StartButton callback={authState.userData ? startGame : gotoRegister} />
         </aside>
         <Information />
         
