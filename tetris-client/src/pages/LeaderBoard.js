@@ -57,7 +57,7 @@ const LeaderBoard = () => {
                   <StyledTableRank style={{ color: "#C4421A" }}>
                     {idx + 1}
                   </StyledTableRank>
-                  <StyledTableElement>{record.email}</StyledTableElement>
+                  <StyledTableElement>{record.email.split('@')[0]}</StyledTableElement>
                   <StyledTableElement>{record.points}</StyledTableElement>
                   {/* <StyledTableElement>
                   {moment(record.createdAt).fromNow(true)} ago

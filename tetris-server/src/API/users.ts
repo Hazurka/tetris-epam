@@ -62,13 +62,8 @@ UsersRouter.post("/login", async (req, res) => {
 
 UsersRouter.get("/all", async (req, res) => {
   const users: IUser[] = await User.find();
-
-   users.forEach((user: IUser) => {
-    const [username] = user?.email?.split('@');
-    user.email = username;
-  });
-
-  res.status(200).send({ users });
+  const resUsers = users.map(user => ({_id: user._id, points: user.points, email: user.email}))
+  res.status(200).send({ users: resUsers });
 });
 
 UsersRouter.post("/updateScore", async (req, res) => {
