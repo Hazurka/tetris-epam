@@ -40,12 +40,6 @@ const Tetris = () => {
   const [flash, setFlash] = useState(null);
   const history = useHistory();
 
-  let username;
-  if (!authState?.userData) {
-    username = null;
-  } else {
-    username = authState.userData?.user?.email;
-  }
 
   // const [createRecord] = useMutation(CREATE_RECORD, {
   //   update(proxy, result) {
@@ -103,7 +97,6 @@ const Tetris = () => {
 
   const startGame = () => {
     // Reset everything
-    console.log('STARTING GAME')
     setStage(createStage());
     setDropTime(1000);
     resetPlayer();
@@ -138,7 +131,7 @@ const Tetris = () => {
         
         if (user.email && user._id) {
           // here!!!
-          const payload = {
+        const payload = {
             points: score,
             email: user.email,
             _id: user._id
@@ -149,6 +142,7 @@ const Tetris = () => {
       }
       updatePlayerPos({ x: 0, y: 0, collided: true });
     }
+
   };
 
   const keyUp = ({ keyCode }) => {
@@ -212,7 +206,8 @@ const Tetris = () => {
               <Display text={`Level: ${level}`} />
             </div>
           )}
-          <StartButton callback={username ? startGame : gotoRegister} />
+          
+          <StartButton callback={authState?.userData ? startGame : gotoRegister} />
         </aside>
         <Information />
         

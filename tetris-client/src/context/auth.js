@@ -2,7 +2,7 @@ import React, { useReducer, createContext, useContext } from "react";
 import jwtDecode from "jwt-decode";
 import { getLocalStorageUser, removeLocalStorageUser } from "./auth-2";
 
-const initialState = {
+let initialState = {
   userData: null,
   activeMenu: 'home'
 }
@@ -13,14 +13,15 @@ const hasCredentials = (token, user) => token && user;
 if (localStorage.getItem("jwtToken")) {
   const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
   const user = getLocalStorageUser();
+  
 
-  if (isTokenValid(decodedToken) && hasCredentials(decodedToken, user)) {
+  if (!isTokenValid(decodedToken) && !hasCredentials(decodedToken, user)) {
     localStorage.removeItem("jwtToken");
     removeLocalStorageUser();
   } else {
-    initialState.userData = {
+    initialState = {
       token: decodedToken,
-      userData: { ...user }
+      userData: user 
     };
   }
 }
