@@ -23,6 +23,7 @@ export const StyledMenuBarUl = styled.ul`
   list-style-type: none;
   align-items: center;
   justify-content: center;
+  margin-right: 15px;
 `;
 
 export const StyledLink = styled.a`

@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { setLocalStorageUser } from "../context/auth-2";
-import Spinner from "../components/Spinner";
 import { tetrisContext } from "../store/tetris-store";
 import { observer } from "mobx-react";
 
@@ -16,6 +15,8 @@ import {
 } from "./styles/StyledForm";
 import { StyledErrors } from "./styles/StyledErrors";
 import { API_URL } from '../constants/index';
+import { useAuthContext } from "../context/auth";
+import { StyledLink } from "../components/styles/StyledMenuBar";
 
 const EMAIL_FIELD = "emailField";
 const PASSWORD_FIELD = "passwordField";
@@ -24,16 +25,19 @@ const loginUserEndpoint = `${API_URL}/users/login`;
 const Login = observer((props) => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const history = useHistory();
 
   const context = useContext(tetrisContext);
+  const { login, setActiveMenu } = useAuthContext();
+
+  useEffect(() => {
+    setActiveMenu('login');
+  }, []);
 
   const onChange = (e, field) => {
     const { value } = e.target;
-    if (field == EMAIL_FIELD) setEmailInput(value);
-    else if (field == PASSWORD_FIELD) setPasswordInput(value);
+    if (field === EMAIL_FIELD) setEmailInput(value);
+    else if (field === PASSWORD_FIELD) setPasswordInput(value);
   };
 
   const onSubmit = async (e) => {
@@ -45,6 +49,7 @@ const Login = observer((props) => {
     try {
       const { data } = await axios.post(loginUserEndpoint, payload);
       context.loginUser(data.user);
+      login(data)
       setLocalStorageUser(data.user);
       const homeButton = document.querySelector('a[name="home"]');
       const leaderboardButton = document.querySelector('a[name="leaderboard"]');
@@ -57,8 +62,6 @@ const Login = observer((props) => {
       });
     }
   };
-
-  if (loading) return <Spinner />;
 
   return (
     <StyledLoginWrapper className="centredLoginForm">
@@ -102,7 +105,16 @@ const Login = observer((props) => {
           <FormButton type="submit">Login</FormButton>
 
           <FormText>
-            Don't have an account? <a href="/register">Register</a>
+            Don't have an account? 
+            <StyledLink
+              name="home"
+              className={"active"}
+              onClick={() => setActiveMenu('register')}
+              as={Link}
+              to="/register"
+            >
+              Register
+            </StyledLink>
           </FormText>
         </form>
       </StyledLoginContainer>

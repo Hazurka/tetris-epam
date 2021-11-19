@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useQuery } from "@apollo/client";
-import moment from "moment";
 
 import Spinner from "../components/Spinner";
-import { FETCH_RECORDS_QUERY } from "../util/graphql";
 
 import {
   StyledTableTitle,
@@ -17,14 +14,17 @@ import {
   StyledTableRank,
 } from "./styles/StyledLeaderBoard";
 import { API_URL } from '../constants/index';
+import { useAuthContext } from "../context/auth";
 
 const allUsersEndpoint = `${API_URL}/users/all`;
 
 const LeaderBoard = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const { setActiveMenu } = useAuthContext();
 
   useEffect(() => {
+    setActiveMenu('leaderboard');
     async function fetchData() {
       setLoading(true);
       const { data } = await axios.get(allUsersEndpoint);

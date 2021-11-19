@@ -1,24 +1,35 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext, useContext } from "react";
 import jwtDecode from "jwt-decode";
+import { getLocalStorageUser, removeLocalStorageUser } from "./auth-2";
 
 const initialState = {
-  user: null
+  userData: null,
+  activeMenu: 'home'
 }
+
+const isTokenValid = (token) => token.exp * 1000 < Date.now();
+const hasCredentials = (token, user) => token && user;
 
 if (localStorage.getItem("jwtToken")) {
   const decodedToken = jwtDecode(localStorage.getItem("jwtToken"));
+  const user = getLocalStorageUser();
 
-  if (decodedToken.exp * 1000 < Date.now()) {
+  if (isTokenValid(decodedToken) && hasCredentials(decodedToken, user)) {
     localStorage.removeItem("jwtToken");
+    removeLocalStorageUser();
   } else {
-    initialState.user = decodedToken;
+    initialState.userData = {
+      token: decodedToken,
+      userData: { ...user }
+    };
   }
 }
 
 const AuthContext = createContext({
-  user: null,
-  login: (userData) => { },
-  logout: () => { }
+  authState: initialState,
+  login: () => {},
+  logout: () => {},
+  setActiveMenu: () => {}
 });
 
 function authReducer(state, action) {
@@ -26,13 +37,23 @@ function authReducer(state, action) {
     case 'LOGIN':
       return {
         ...state,
-        user: action.payload
+        userData: {
+          ...state.userData,
+          ...action.payload
+        }
       }
     case 'LOGOUT':
       return {
         ...state,
-        user: null
+        userData: null
       }
+    // TODO: MOVE! this is the wrong place for this
+    case 'SET_ACTIVE_MENU':
+      return {
+        ...state,
+        activeMenu: action.payload
+      }
+
     default:
       return state;
   }
@@ -56,12 +77,23 @@ function AuthProvider(props) {
     })
   }
 
+  function setActiveMenu(activeMenu) {
+    dispatch({
+      type: 'SET_ACTIVE_MENU',
+      payload: activeMenu
+    })
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user: state.user, login, logout }}
+      value={{ authState: state, login, logout, setActiveMenu }}
       {...props}
     />
   )
 };
+
+export const useAuthContext = () => {
+  return useContext(AuthContext);
+}
 
 export { AuthContext, AuthProvider };

@@ -1,15 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
+// import gql from "graphql-tag";
+// import { useMutation } from "@apollo/client";
 import Fade from "@material-ui/core/Fade";
 
 //Utility
 import { createStage, checkCollision } from "../util/gameHelpers";
-import { FETCH_RECORDS_QUERY, FETCH_USER_RECORDS_QUERY } from "../util/graphql";
+// import { FETCH_RECORDS_QUERY, FETCH_USER_RECORDS_QUERY } from "../util/graphql";
 
 //User Context
-import { AuthContext } from "../context/auth";
+import { useAuthContext } from "../context/auth";
 
 //Custom Hooks
 import { useInterval } from "../hooks/useInterval";
@@ -21,6 +21,7 @@ import { useGameStatus } from "../hooks/useGameStatus";
 import Stage from "../components/Stage";
 import Display from "../components/Display";
 import StartButton from "../components/StartButton";
+import { useHistory } from "react-router-dom";
 
 //Styled Components
 import {
@@ -35,55 +36,56 @@ import  Information from './Information';
 const postGameOverResult = `${API_URL}/users/updateScore`;
 
 const Tetris = () => {
-  const { user } = useContext(AuthContext);
+  const { authState, setActiveMenu } = useAuthContext();
   const [flash, setFlash] = useState(null);
+  const history = useHistory();
 
   let username;
-  if (!user) {
+  if (!authState?.userData) {
     username = null;
   } else {
-    username = user.username;
+    username = authState.userData?.user?.email;
   }
 
-  const [createRecord] = useMutation(CREATE_RECORD, {
-    update(proxy, result) {
-      const data = proxy.readQuery({
-        query: FETCH_RECORDS_QUERY,
-      });
+  // const [createRecord] = useMutation(CREATE_RECORD, {
+  //   update(proxy, result) {
+  //     const data = proxy.readQuery({
+  //       query: FETCH_RECORDS_QUERY,
+  //     });
 
-      if (result.data.createRecord.score > data.getRecords[0].score) {
-        setFlash(true);
+  //     if (result.data.createRecord.score > data.getRecords[0].score) {
+  //       setFlash(true);
 
-        setTimeout(() => {
-          setFlash(null);
-        }, 5000);
-      }
+  //       setTimeout(() => {
+  //         setFlash(null);
+  //       }, 5000);
+  //     }
 
-      proxy.writeQuery({
-        query: FETCH_RECORDS_QUERY,
-        data: {
-          getRecords: [result.data.createRecord, ...data.getRecords]
-            .sort((a, b) => (a.score > b.score ? -1 : 1))
-            .slice(0, 10),
-        },
-      });
+  //     proxy.writeQuery({
+  //       query: FETCH_RECORDS_QUERY,
+  //       data: {
+  //         getRecords: [result.data.createRecord, ...data.getRecords]
+  //           .sort((a, b) => (a.score > b.score ? -1 : 1))
+  //           .slice(0, 10),
+  //       },
+  //     });
 
-      const { getUserRecords } = proxy.readQuery({
-        query: FETCH_USER_RECORDS_QUERY,
-        variables: { username },
-      });
+  //     const { getUserRecords } = proxy.readQuery({
+  //       query: FETCH_USER_RECORDS_QUERY,
+  //       variables: { username },
+  //     });
 
-      proxy.writeQuery({
-        query: FETCH_USER_RECORDS_QUERY,
-        data: {
-          getUserRecords: [result.data.createRecord, ...getUserRecords].sort(
-            (a, b) => (a.score > b.score ? -1 : 1)
-          ),
-        },
-        variables: { username },
-      });
-    },
-  });
+  //     proxy.writeQuery({
+  //       query: FETCH_USER_RECORDS_QUERY,
+  //       data: {
+  //         getUserRecords: [result.data.createRecord, ...getUserRecords].sort(
+  //           (a, b) => (a.score > b.score ? -1 : 1)
+  //         ),
+  //       },
+  //       variables: { username },
+  //     });
+  //   },
+  // });
 
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
@@ -101,6 +103,7 @@ const Tetris = () => {
 
   const startGame = () => {
     // Reset everything
+    console.log('STARTING GAME')
     setStage(createStage());
     setDropTime(1000);
     resetPlayer();
@@ -109,6 +112,11 @@ const Tetris = () => {
     setRows(0);
     setLevel(0);
   };
+
+  const gotoRegister = () => {
+    setActiveMenu('register');
+    history.push('/register');
+  }
 
   const drop = async () => {
     // Increase level when player has cleared 10 rows
@@ -204,7 +212,7 @@ const Tetris = () => {
               <Display text={`Level: ${level}`} />
             </div>
           )}
-          <StartButton callback={startGame} />
+          <StartButton callback={username ? startGame : gotoRegister} />
         </aside>
         <Information />
         
@@ -214,16 +222,16 @@ const Tetris = () => {
   );
 };
 
-const CREATE_RECORD = gql`
-  mutation createRecord($score: Int!, $level: Int!) {
-    createRecord(score: $score, level: $level) {
-      id
-      score
-      level
-      username
-      createdAt
-    }
-  }
-`;
+// const CREATE_RECORD = gql`
+//   mutation createRecord($score: Int!, $level: Int!) {
+//     createRecord(score: $score, level: $level) {
+//       id
+//       score
+//       level
+//       username
+//       createdAt
+//     }
+//   }
+// `;
 
 export default Tetris;

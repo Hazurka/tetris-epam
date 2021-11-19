@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { tetrisContext } from "../store/tetris-store";
@@ -11,13 +11,15 @@ import {
   StyledMenuBarUl,
   StyledLink,
 } from "./styles/StyledMenuBar";
+import { removeLocalStorageUser } from "../context/auth-2";
+import { useAuthContext } from "../context/auth";
 
-const ContactsUl = ({ activeItem, handleItemClick }) => {
+const ContactsUl = ({ activeMenu, handleItemClick }) => {
   return (
     <li>
       <StyledLink
         name="Contacts"
-        className={activeItem === "contacts" ? "active" : ""}
+        className={activeMenu === "contacts" ? "active" : ""}
         onClick={handleItemClick}
         as={Link}
         to="/contacts"
@@ -30,30 +32,30 @@ const ContactsUl = ({ activeItem, handleItemClick }) => {
 
 const MenuBar = observer(() => {
   const tetrisStore = useContext(tetrisContext);
-  const user = tetrisStore.getUser();
-  const [activeItem, setActiveItem] = useState("home");
+  const { authState, logout: authContextLogout, setActiveMenu } = useAuthContext();
+  const { userData } = authState;
   const history = useHistory();
 
   const logout = () => {
+    removeLocalStorageUser()
     tetrisStore.logoutUser();
+    authContextLogout();
     history.push("/login");
   };
 
-  
-
-  const handleItemClick = (e) => setActiveItem(e.target.name);
-  const menuBar = user ? (
+  const handleItemClick = (e) => setActiveMenu(e.target.name);
+  const menuBar = userData ? (
     <StyledNav>
       <StyledMenuBarContainer>
         <h1>
           <StyledLink
             name="home"
-            className={activeItem === "home" ? "active" : ""}
+            className={authState.activeMenu === "home" ? "active" : ""}
             onClick={handleItemClick}
             as={Link}
             to="/"
           >
-            {user.email}
+            Play Game
           </StyledLink>
         </h1>
         <StyledMenuBarUl>
@@ -61,7 +63,7 @@ const MenuBar = observer(() => {
           <li>
             <StyledLink
               name="leaderboard"
-              className={activeItem === "leaderboard" ? "active" : ""}
+              className={authState.activeMenu === "leaderboard" ? "active" : ""}
               onClick={handleItemClick}
               as={Link}
               to="/leaderboard"
@@ -69,7 +71,7 @@ const MenuBar = observer(() => {
               Leaderboard
             </StyledLink>
           </li>
-          <ContactsUl activeItem={activeItem} handleItemClick={handleItemClick} />
+          <ContactsUl activeMenu={authState.activeMenu} handleItemClick={handleItemClick} />
           {/* <li>
             <StyledLink
               name="myscores"
@@ -95,7 +97,7 @@ const MenuBar = observer(() => {
         <h1>
           <StyledLink
             name="home"
-            className={activeItem === "home" ? "active" : ""}
+            className={authState.activeMenu === "home" ? "active" : ""}
             onClick={handleItemClick}
             as={Link}
             to="/"
@@ -108,7 +110,7 @@ const MenuBar = observer(() => {
           <li>
             <StyledLink
               name="leaderboard"
-              className={activeItem === "leaderboard" ? "active" : ""}
+              className={authState.activeMenu === "leaderboard" ? "active" : ""}
               onClick={handleItemClick}
               as={Link}
               to="/leaderboard"
@@ -116,11 +118,11 @@ const MenuBar = observer(() => {
               Leaderboard
             </StyledLink>
           </li>
-          <ContactsUl activeItem={activeItem} handleItemClick={handleItemClick} />
+          <ContactsUl activeMenu={authState.activeMenu} handleItemClick={handleItemClick} />
           <li>
             <StyledLink
               name="login"
-              className={activeItem === "login" ? "active" : ""}
+              className={authState.activeMenu === "login" ? "active" : ""}
               onClick={handleItemClick}
               as={Link}
               to="/login"
@@ -131,7 +133,7 @@ const MenuBar = observer(() => {
           <li>
             <StyledLink
               name="register"
-              className={activeItem === "register" ? "active" : ""}
+              className={authState.activeMenu === "register" ? "active" : ""}
               onClick={handleItemClick}
               as={Link}
               to="/register"

@@ -1,7 +1,6 @@
 import * as express from "express";
 import * as mongoose from "mongoose";
 import JWTLogin from "../helpers/jwt-login";
-const jwt = require("jsonwebtoken");
 
 import { passwordHash, passwordCompare } from "../lib/auth";
 import { IUser, User } from "../schema/users";

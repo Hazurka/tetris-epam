@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useQuery } from "@apollo/client";
 import moment from "moment";
 
@@ -8,15 +8,16 @@ import { FETCH_USER_RECORDS_QUERY } from "../util/graphql";
 import { StyledTableTitle, StyledTableWrapper, StyledTable, StyledTableHeader, StyledTableBody, StyledTableRow, StyledTableRank, StyledTableElement, StyledNoScores } from "./styles/StyledLeaderBoard";
 
 //User Context
-import { AuthContext } from "../context/auth";
+import { useAuthContext } from "../context/auth";
 
 const MyScores = () => {
-  const { user } = useContext(AuthContext);
+  const { authState } = useAuthContext();
+
   let username;
-  if (!user) {
+  if (!authState?.userData) {
     username = null;
   } else {
-    username = user.username;
+    username = authState.userData?.user?.email;
   }
   const { loading, data } = useQuery(FETCH_USER_RECORDS_QUERY, {
     variables: { username }

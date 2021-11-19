@@ -43,7 +43,7 @@ export const StyledFormControl = styled.div`
 
   & label {
     position: absolute;
-    top: -15px;
+    top: -18px;
     left: 0;
     font-size: 16px;
 
